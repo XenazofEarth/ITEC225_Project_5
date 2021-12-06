@@ -9,7 +9,7 @@
 	<body>
 	<script type="text/javascript">
 	// Date,VADATA.Death,VADATA.DeathConfirmed
-	let d1 = "https://raw.githubusercontent.com/XenazofEarth/ITEC225_Project_5/main/Project5/csv/deaths/caDeaths.csv"
+	let d1 = "https://raw.githubusercontent.com/XenazofEarth/ITEC225_Project_5/test/Project5/csv/caData.csv"
 	let d2 = "https://raw.githubusercontent.com/XenazofEarth/ITEC225_Project_5/main/Project5/csv/hospital/caHosp.csv"
 	
 	Plotly.d3.csv(d1, function(err, rows){
@@ -31,7 +31,7 @@
 	mode: "lines",
 	name: 'CA Confirmed Deaths',
 	x: unpack(rows, 'Date'),
-	y: unpack(rows, 'CADATA.DeathConfirmed'),
+	y: unpack(rows, 'CADATA.DeathIncrease'),
 	line: {color: '#CA1B0D'}
 	}
 	
