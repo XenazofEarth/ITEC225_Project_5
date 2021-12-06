@@ -9,14 +9,15 @@
 	<body>
 	<script type="text/javascript">
 	// Date,VADATA.Death,VADATA.DeathConfirmed
-	var d1 = "https://raw.githubusercontent.com/XenazofEarth/ITEC225_Project_5/main/Project5/csv/deaths/caDeaths.csv"
+	let d1 = "https://raw.githubusercontent.com/XenazofEarth/ITEC225_Project_5/main/Project5/csv/deaths/caDeaths.csv"
+	let d2 = "https://raw.githubusercontent.com/XenazofEarth/ITEC225_Project_5/main/Project5/csv/hospital/caHosp.csv"
 	
 	Plotly.d3.csv(d1, function(err, rows){
 	function unpack(rows, key) {
 	return rows.map(function(row) { return row[key]; });
 	}
 	
-	var t1 = {
+	let t1 = {
 	type: "scatter",
 	mode: "lines",
 	name: 'CA Total Deaths',
@@ -25,7 +26,7 @@
 	line: {color: '#21A216'}
 	}
 	
-	var t2 = {
+	let t2 = {
 	type: "scatter",
 	mode: "lines",
 	name: 'CA Confirmed Deaths',
@@ -34,16 +35,49 @@
 	line: {color: '#CA1B0D'}
 	}
 	
-	var data = [t1,t2];
-	var layout = {
-	title: 'Custom: CA Total Deaths and Confirmed Deaths',
+	let data = [t1,t2];
+	let layout = {
+	title: 'Custom: CA Total Deaths and Confirmed Deaths (T)',
 	};
 	
-	Plotly.newPlot('myplot', data, layout);
+	Plotly.newPlot('deaths', data, layout);
+	})
+	// Start of Hospitalization Graph
+	Plotly.d3.csv(d2, function(err, rows){
+	function unpack(rows, key) {
+	return rows.map(function(row) { return row[key]; });
+	}
+	
+	let t1 = {
+	type: "scatter",
+	mode: "lines",
+	name: 'CA Hospitalized',
+	x: unpack(rows, 'Date'),
+	y: unpack(rows, 'CADATA.Hosp'),
+	line: {color: '#21A216'}
+	}
+	
+	let t2 = {
+	type: "scatter",
+	mode: "lines",
+	name: 'CA Total Hospitalized',
+	x: unpack(rows, 'Date'),
+	y: unpack(rows, 'CADATA.HospCum'),
+	line: {color: '#CA1B0D'}
+	}
+	
+	let data2 = [t1,t2];
+	let layout2 = {
+	title: 'Custom: CA Hospitalized and Total Hospitalized',
+	};
+	
+	Plotly.newPlot('hosp', data2, layout2);
 	})
 	
 	</script>
-	<div id="myplot">
+	<div id="deaths">
+	</div>
+	<div id="hosp">
 	</div>
 	<div>
 	<p> Data were pulled from this Data Warehouse plant: <a href="https://covidtracking.com">The COVID Tracking Project</a>

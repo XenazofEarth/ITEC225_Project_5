@@ -9,14 +9,14 @@
 	<body>
 	<script type="text/javascript">
 	// Date,VADATA.Death,VADATA.DeathConfirmed
-	var d1 = "https://raw.githubusercontent.com/XenazofEarth/ITEC225_Project_5/main/Project5/csv/deaths/nyDeaths.csv"
+	let d1 = "https://raw.githubusercontent.com/XenazofEarth/ITEC225_Project_5/main/Project5/csv/deaths/nyDeaths.csv"
 	
 	Plotly.d3.csv(d1, function(err, rows){
 	function unpack(rows, key) {
 	return rows.map(function(row) { return row[key]; });
 	}
 	
-	var t1 = {
+	let t1 = {
 	type: "scatter",
 	mode: "lines",
 	name: 'NY Total Deaths',
@@ -25,7 +25,7 @@
 	line: {color: '#21A216'}
 	}
 	
-	var t2 = {
+	let t2 = {
 	type: "scatter",
 	mode: "lines",
 	name: 'NY Confirmed Deaths',
@@ -34,8 +34,8 @@
 	line: {color: '#CA1B0D'}
 	}
 	
-	var data = [t1,t2];
-	var layout = {
+	let data = [t1,t2];
+	let layout = {
 	title: 'Custom: NY Total Deaths and Confirmed Deaths',
 	};
 	
