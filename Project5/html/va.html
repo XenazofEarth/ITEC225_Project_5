@@ -9,7 +9,7 @@
 	<body>
 	<script type="text/javascript">
 	// Date,VADATA.Death,VADATA.DeathConfirmed
-	let d1 = "https://raw.githubusercontent.com/XenazofEarth/ITEC225_Project_5/main/Project5/csv/deaths/vaDeaths.csv"
+	let d1 = "https://raw.githubusercontent.com/XenazofEarth/ITEC225_Project_5/test/Project5/csv/vaData.csv"
 	
 	Plotly.d3.csv(d1, function(err, rows){
 	function unpack(rows, key) {
@@ -34,16 +34,41 @@
 	line: {color: '#CA1B0D'}
 	}
 	
-	let data = [t1,t2];
-	let layout = {
+	let t3 = {
+	type: "scatter",
+	mode: "lines",
+	name: 'VA Currently Hospitalized',
+	x: unpack(rows, 'Date'),
+	y: unpack(rows, 'VADATA.HospCurr'),
+	line: {color: '#21A216'}
+	}
+	
+	let t4 = {
+	type: "scatter",
+	mode: "lines",
+	name: 'VA Currently in the ICU',
+	x: unpack(rows, 'Date'),
+	y: unpack(rows, 'VADATA.IcuCurr'),
+	line: {color: '#CA1B0D'}
+	}
+
+	let data1 = [t1,t2];
+	let data2 = [t3,t4];
+	let layout1 = {
 	title: 'Custom: VA Total Deaths and Confirmed Deaths',
 	};
+	let layout2 = {
+	title: 'Custom: VA Currently Hospitalized and in the ICU',
+	};
 	
-	Plotly.newPlot('myplot', data, layout);
+	Plotly.newPlot('deaths', data1, layout1);
+	Plotly.newPlot('hosp', data2, layout2);
 	})
 	
 	</script>
-	<div id="myplot">
+	<div id="deaths">
+	</div>
+	<div id="hosp">
 	</div>
 	<div>
 	<p> Data were pulled from this Data Warehouse plant: <a href="https://covidtracking.com">The COVID Tracking Project</a>
