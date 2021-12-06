@@ -2,4 +2,4 @@ h1 { font-family: Impact; font-size: 40px; font-weight: strong; text-decoration:
 ul { align-self: center; margin-block: 2.5%; }
 li { font-family: serif; font-size: 25px; margin-top: 2.5%; margin-left: 5%; }
 p { font-family: serif; font-size: 25px; margin-top: 2.5%; margin-left: 5%; }
-body { background-image: url("./img/hospital_background.png"); background-size: cover; }
+body { background-image: url("../img/hospital_background.png"); background-size: cover; }
