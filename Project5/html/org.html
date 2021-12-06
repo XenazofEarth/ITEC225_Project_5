@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Load plotly.js -->
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+</head>
+
+<body>
+<script type="text/javascript">
+// Date,VADATA.Death,VADATA.DeathConfirmed
+let d1 = "../csv/tx.csv";
+
+Plotly.d3.csv(d1, function(err, rows){
+function unpack(rows, key) {
+return rows.map(function(row) { return row[key]; });
+}
+
+let t1 = {
+type: "scatter",
+mode: "lines",
+name: 'Tx Total Deaths',
+x: unpack(rows, 'Date'),
+y: unpack(rows, 'CODATA.Death'),
+line: {color: '#21A216'}
+}
+
+let data = t1;
+let layout = {
+title: "Custom: Tx Total Deaths",
+xaxis: { title: "X axis", showgrid: "false", zeroline: "false" },
+yaxis: { title: "Y axis", showgrline: "false" }
+};
+
+Plotly.newPlot("myplot", data, layout);
+})
+
+</script>
+<div id="myplot">
+</div>
+<div>
+<p> Data was pulled from this Data Warehouse plant: <a href="https://covidtracking.com">The COVID Tracking Project</a>
+Information pertaining to this project can be found <a href="https://covidtracking.com/about">here</a>.
+</p>
+</div>
+</body>
+</html>
