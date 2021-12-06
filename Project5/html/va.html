@@ -9,7 +9,7 @@
 	<body>
 	<script type="text/javascript">
 	// Date,VADATA.Death,VADATA.DeathConfirmed
-	var d1 = "https://raw.githubusercontent.com/XenazofEarth/ITEC225_Project_5/main/Project5/csv/tx.csv"
+	var d1 = "https://raw.githubusercontent.com/XenazofEarth/ITEC225_Project_5/main/Project5/csv/va.csv"
 	
 	Plotly.d3.csv(d1, function(err, rows){
 	function unpack(rows, key) {
@@ -19,24 +19,24 @@
 	var t1 = {
 	type: "scatter",
 	mode: "lines",
-	name: 'TX Total Deaths',
+	name: 'VA Total Deaths',
 	x: unpack(rows, 'Date'),
-	y: unpack(rows, 'TXDATA.Death'),
+	y: unpack(rows, 'VADATA.Death'),
 	line: {color: '#21A216'}
 	}
 	
 	var t2 = {
 	type: "scatter",
 	mode: "lines",
-	name: 'TX Confirmed Deaths',
+	name: 'VA Confirmed Deaths',
 	x: unpack(rows, 'Date'),
-	y: unpack(rows, 'TXDATA.DeathConfirmed'),
+	y: unpack(rows, 'VADATA.DeathConfirmed'),
 	line: {color: '#CA1B0D'}
 	}
 	
 	var data = [t1,t2];
 	var layout = {
-	title: 'Custom: TX Total Deaths and Confirmed Deaths',
+	title: 'Custom: VA Total Deaths and Confirmed Deaths',
 	};
 	
 	Plotly.newPlot('myplot', data, layout);
