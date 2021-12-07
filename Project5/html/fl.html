@@ -1,54 +1,80 @@
 <!doctype html>
-	<html lang="en">
+<html lang="en">
 	<head>
-	<meta charset="UTF-8">
-	<!-- Load plotly.js -->
-	<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+		<link rel="stylesheet" href="../css/stylesheet.css">
+		<meta charset="UTF-8">
+		<!-- Load plotly.js -->
+		<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
 	</head>
 	
 	<body>
-	<script type="text/javascript">
-	// Date,VADATA.Death,VADATA.DeathConfirmed
-	var d1 = "https://raw.githubusercontent.com/XenazofEarth/ITEC225_Project_5/main/Project5/csv/deaths/flDeaths.csv"
-	
-	Plotly.d3.csv(d1, function(err, rows){
-	function unpack(rows, key) {
-	return rows.map(function(row) { return row[key]; });
-	}
-	
-	var t1 = {
-	type: "scatter",
-	mode: "lines",
-	name: 'FL Total Deaths',
-	x: unpack(rows, 'Date'),
-	y: unpack(rows, 'FLDATA.Death'),
-	line: {color: '#21A216'}
-	}
-	
-	var t2 = {
-	type: "scatter",
-	mode: "lines",
-	name: 'FL Confirmed Deaths',
-	x: unpack(rows, 'Date'),
-	y: unpack(rows, 'FLDATA.DeathConfirmed'),
-	line: {color: '#CA1B0D'}
-	}
-	
-	var data = [t1,t2];
-	var layout = {
-	title: 'Custom: FL Total Deaths and Confirmed Deaths',
-	};
-	
-	Plotly.newPlot('myplot', data, layout);
-	})
-	
-	</script>
-	<div id="myplot">
-	</div>
-	<div>
-	<p> Data were pulled from this Data Warehouse plant: <a href="https://covidtracking.com">The COVID Tracking Project</a>
-	Information pertains to this project can be found <a href="https://covidtracking.com/about">here</a>.
-	</p>
-	</div>
+		<script type="text/javascript">
+			// Date,VADATA.Death,VADATA.DeathConfirmed
+			let d1 = "https://raw.githubusercontent.com/XenazofEarth/ITEC225_Project_5/test/Project5/csv/flData.csv"
+			
+			Plotly.d3.csv(d1, function(err, rows){
+				function unpack(rows, key) {
+					return rows.map(function(row) { return row[key]; });
+				}
+				
+				let t1 = {
+					type: "scatter",
+					mode: "lines",
+					name: 'FL Total Deaths',
+					x: unpack(rows, 'Date'),
+					y: unpack(rows, 'FLDATA.Death'),
+					line: {color: '#21A216'}
+				}
+				
+				let t2 = {
+					type: "scatter",
+					mode: "lines",
+					name: 'FL Death Increase',
+					x: unpack(rows, 'Date'),
+					y: unpack(rows, 'FLDATA.DeathIncrease'),
+					line: {color: '#CA1B0D'}
+				}
+
+				let t3 = {
+					type: "scatter",
+					mode: "lines",
+					name: 'FL Currently Hospitalized',
+					x: unpack(rows, 'Date'),
+					y: unpack(rows, 'FLDATA.HospCurr'),
+					line: {color: '#21A216'}
+				}
+				
+				let t4 = {
+					type: "scatter",
+					mode: "lines",
+					name: 'FL Currently in ICU',
+					x: unpack(rows, 'Date'),
+					y: unpack(rows, 'FLDATA.IcuCurr'),
+					line: {color: '#CA1B0D'}
+				}
+				
+				let data1 = [t1,t2];
+				let data2 = [t3,t4];
+				let layout1 = {
+					title: 'Custom: FL Total Deaths and Confirmed Deaths',
+				};
+				let layout2 = {
+					title: 'Custom: FL Currently Hospitalized and in ICU',
+				};
+				
+				Plotly.newPlot('deaths', data1, layout1);
+				Plotly.newPlot('hosp', data2, layout2)
+			})
+			
+		</script>
+		<div id="deaths">
+		</div>
+		<div id="hosp">
+		</div>
+		<div>
+			<p> Data was pulled from this Data Warehouse plant: <a href="https://covidtracking.com">The COVID Tracking Project</a>
+			Information pertaining to this project can be found <a href="https://covidtracking.com/about">here</a>.
+			</p>
+		</div>
 	</body>
-	</html>
+</html>
